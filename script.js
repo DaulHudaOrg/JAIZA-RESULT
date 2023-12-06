@@ -15,6 +15,7 @@ function loadPDF() {
     if (pdfName != 'undefined' && pdfName != "" && pdfPassword != 'undefined' && pdfPassword != "") {
         if (pdfName.lastIndexOf(".") != -1) {
             pdfName = pdfName.substring(0, pdfName.lastIndexOf("."));
+            pdfName = pdfName.replaceAll("_", "%5F");
         }
         downloadPDF(pdfName.toUpperCase(), pdfPassword);
     }
