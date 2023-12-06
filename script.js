@@ -15,14 +15,13 @@ function loadPDF() {
     if (pdfName != 'undefined' && pdfName != "" && pdfPassword != 'undefined' && pdfPassword != "") {
         if (pdfName.lastIndexOf(".") != -1) {
             pdfName = pdfName.substring(0, pdfName.lastIndexOf("."));
-            pdfName = pdfName.replaceAll("_", "%5F");
         }
         downloadPDF(pdfName.toUpperCase(), pdfPassword);
     }
 }
 
 function downloadPDF(pdfName, pdfPassword) {
-    const loadingTask = pdfjsLib.getDocument({ url: encodeURI(`${pdfName}.pdf`), password: pdfPassword });
+    const loadingTask = pdfjsLib.getDocument({ url: `${pdfName}.pdf`, password: pdfPassword });
     console.log('Loading PDF...');
     loadingTask.promise.then(function (pdfDoc) {
         console.log('PDF loaded successfully:', pdfDoc);
