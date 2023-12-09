@@ -97,6 +97,12 @@ function downloadPDF() {
          xHttp.responseType = "arraybuffer";*/
     }
 }
+document.getElementById("pdfName").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("loadpdf").click();
+    }
+});
 
 const xHttp = new XMLHttpRequest();
 xHttp.onload = function () {
