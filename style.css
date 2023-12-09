@@ -39,11 +39,3 @@ button {
     border-radius: 4px;
     cursor: pointer;
 }
-
-#pdfViewer {
-    /* Center the viewer */
-    max-width: 100%;
-    /* Ensure the viewer is not wider than the screen */
-    overflow-x: auto;
-    /* Enable horizontal scrolling if needed */
-}
