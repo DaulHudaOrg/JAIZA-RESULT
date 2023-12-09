@@ -29,12 +29,12 @@
         <h1>MADARASA DARUL HUDA</h1>
         <h2>JAIZA RESULT</h2>
         <label for="pdfName">Taalib ka Naam:</label>
+        <input type="text" id="pdfName" placeholder="Talib ka naam type kare..." list="nameSuggestions"
+            autocomplete="off" required>
         <datalist id="nameSuggestions"></datalist>
-        <input type="text" id="pdfName" placeholder="Talib ka naam type kare..." list="nameSuggestions" autocomplete="off required>
-        <label for=" pdfPassword">Result passcode:</label>
-        <input type="text" id="pdfPassword" placeholder="Password type kare...">
-        <button id="loadpdf" onclick="loadPDF()">Load PDF</button>
-        <div id="pdfViewer"></div>
+        <button type=" button" id="downloadpdf" onclick="downloadPDF()"> View Result</button>
+        <div id="pdfViewer">
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
