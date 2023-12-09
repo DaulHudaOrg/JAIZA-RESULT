@@ -41,19 +41,15 @@ button {
 }
 
 #pdfViewer {
-    margin: 20px auto; /* Center the viewer */
-    max-width: 100%; /* Ensure the viewer is not wider than the screen */
-    overflow-x: auto; /* Enable horizontal scrolling if needed */
+    /* Center the viewer */
+    max-width: 100%;
+    /* Ensure the viewer is not wider than the screen */
+    overflow-x: auto;
+    /* Enable horizontal scrolling if needed */
 }
 
-@media (max-width: 600px) {
-    #pdfViewer {
-        max-width: 100%; /* Adjust for smaller screens */
-    }
-}
 
 .page-container {
-    margin-bottom: 10px; /* Adjust margin for smaller screens */
+
+    /* Adjust margin for smaller screens */
 }
-
-
