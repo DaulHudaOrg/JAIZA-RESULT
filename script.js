@@ -72,13 +72,13 @@ function downloadPDF() {
     if (pdfName != 'undefined' && pdfName != "") {
         if (pdfName.lastIndexOf(".") != -1) {
             let ext = pdfName.substring(pdfName.lastIndexOf(".") + 1, pdfName.length);
-            if ('pdf' == ext) {
+            if ('pdf' == ext.toLowerCase()) {
                 pdfName = pdfName.substring(0, pdfName.lastIndexOf("."));
             }
 
         }
 
-        pdfName = pdfName + ".pdf";
+        pdfName = pdfName.toUpperCase() + ".pdf";
         window.open(encodeURI(pdfName));
         /* const xHttp = new XMLHttpRequest();
          xHttp.onload = function () {
