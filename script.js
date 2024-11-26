@@ -4,7 +4,7 @@ function loadPDF() {
     let pdfViewer = document.getElementById('pdfViewer');
 
     if (pdfName == 'undefined' || pdfName == null || pdfName == "") {
-        alert('Please enter student name');
+        alert('Please enter PDF name');
     }
 
     if (pdfPassword == 'undefined' || pdfPassword == null || pdfPassword == "") {
@@ -16,11 +16,11 @@ function loadPDF() {
         if (pdfName.lastIndexOf(".") != -1) {
             pdfName = pdfName.substring(0, pdfName.lastIndexOf("."));
         }
-        viewPDFOnPage(pdfName.toUpperCase(), pdfPassword);
+        downloadPDF(pdfName.toUpperCase(), pdfPassword);
     }
 }
 
-function viewPDFOnPage(pdfName, pdfPassword) {
+function downloadPDF(pdfName, pdfPassword) {
     const loadingTask = pdfjsLib.getDocument({ url: `${pdfName}.pdf`, password: pdfPassword });
     console.log('Loading PDF...');
     loadingTask.promise.then(function (pdfDoc) {
@@ -44,8 +44,7 @@ function viewPDFOnPage(pdfName, pdfPassword) {
                 const context = canvas.getContext('2d');
                 pageContainer.appendChild(canvas);
 
-                const viewport = pdfPage.getViewport({ scale: 1.25 });
-                //const viewport = pdfPage.getViewport({ scale: canvas.width / pdfPage.getViewport({ scale: 0.8 }).width });
+                const viewport = pdfPage.getViewport({ scale: 1.5 });
                 canvas.height = viewport.height;
                 canvas.width = viewport.width;
 
@@ -62,49 +61,17 @@ function viewPDFOnPage(pdfName, pdfPassword) {
     });
 }
 
-
-function downloadPDF() {
-    let pdfName = document.getElementById("pdfName").value;
-    //let pdfPassword = document.getElementById('pdfPassword').value;
-    if (pdfName == 'undefined' || pdfName == null || pdfName == "") {
-        alert('Please enter student name');
+document.getElementById("pdfPassword").addEventListener("keypress", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("loadpdf").click();
     }
-    if (pdfName != 'undefined' && pdfName != "") {
-        if (pdfName.lastIndexOf(".") != -1) {
-            let ext = pdfName.substring(pdfName.lastIndexOf(".") + 1, pdfName.length);
-            if ('pdf' == ext.toLowerCase()) {
-                pdfName = pdfName.substring(0, pdfName.lastIndexOf("."));
-            }
+});
 
-        }
-
-        pdfName = pdfName.toUpperCase() + ".pdf";
-        window.open(encodeURI(pdfName));
-        /* const xHttp = new XMLHttpRequest();
-         xHttp.onload = function () {
-             const arrayBuffer = this.response;
-             if (arrayBuffer) {
-                 const byteArray = new Uint8Array(arrayBuffer);
-                 byteArray.forEach((element, index) => {
- 
-                 });
-                 let blob = new Blob([byteArray], { type: "application/pdf" });
-                 let link = document.createElement('a');
-                 link.href = window.URL.createObjectURL(blob);
-                 link.download = pdfName;
-                 link.click();
-             }
-         };
- 
-         xHttp.open('GET', pdfName, true);
-         xHttp.send();
-         xHttp.responseType = "arraybuffer";*/
-    }
-}
 document.getElementById("pdfName").addEventListener("keypress", function (event) {
     if (event.key === "Enter") {
         event.preventDefault();
-        document.getElementById("downloadpdf").click();
+        document.getElementById("loadpdf").click();
     }
 });
 
@@ -120,7 +87,6 @@ xHttp.onload = function () {
         let workbook = XLSX.read(fileData, { type: "array" });
         workbook.SheetNames.forEach(sheet => {
             let rowData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheet]);
-            rowData.sort((a, b) => { return a.Names.toLowerCase() > b.Names.toLowerCase() ? 1 : -1; });
             // Populate the datalist with suggestions
             var pdfSuggestionsList = document.getElementById('nameSuggestions');
             rowData.forEach(function (e) {
